@@ -1,0 +1,34 @@
+
+{
+    "manifest_version": 2,
+    "name": "ChatGPT3ConversationBackup",
+    "version": "1.0",
+    "description": "This addon allows you to save ChatGPT3 chats to an HTML file.",
+    "permissions": [
+      "activeTab",
+      "downloads",
+      "contextMenus",
+      "storage",
+      "tabs",
+      "menus",
+      "https://chat.openai.com/"
+    ],
+    "content_scripts": [
+      {
+        "matches": ["https://chat.openai.com/*"],
+        "js": ["content.js"]
+      }
+    ],
+    "background": {
+      "scripts": ["background.js"]
+    },
+
+    "browser_action": {
+      "default_title": "save ChatGPT3 chats to an HTML file",
+      "default_popup": "popup.html"
+    },
+    "icons": {
+      "96": "icons/icon96.png"
+    }
+  }
+  
