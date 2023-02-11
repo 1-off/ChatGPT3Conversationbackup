@@ -1,12 +1,12 @@
-function getRandomColor() {
-  var letters = "0123456789ABCDEF";
-  var color = "#";
-  for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-}
-document.body.style.border = "5px solid " + getRandomColor();
+// function getRandomColor() {
+//   var letters = "0123456789ABCDEF";
+//   var color = "#";
+//   for (var i = 0; i < 6; i++) {
+//     color += letters[Math.floor(Math.random() * 16)];
+//   }
+//   return color;
+// }
+// document.body.style.border = "5px solid " + getRandomColor();
 
 clssName_ =
   "text-base gap-4 md:gap-6 m-auto md:max-w-2xl lg:max-w-2xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0";
