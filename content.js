@@ -10,7 +10,7 @@
 
 clssName_ =
   "text-base gap-4 md:gap-6 m-auto md:max-w-2xl lg:max-w-2xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0";
-
+let checkboxStatus = false;
   // var arrowDown = new Image();
   // arrowDown.src = "icons/arrowDown.png";
   // arrowDown.id = "arrowDown";
@@ -35,7 +35,7 @@ clssName_ =
   // document.body.appendChild(arrowUp);
 
 
-addCheckboxesToDivs();
+
 
 function htmlToText(divs) {  
   var text = "";
@@ -148,7 +148,6 @@ function htmlToLatex(divs) {
   var latex = "";
   latex +=
     "\\documentclass{article}\n\n\\usepackage{listings}\n\n\\usepackage{xcolor}\n\n\\lstset{backgroundcolor=\\color{pink!60},numbers=left,basicstyle=\\color{black}\\ttfamily,breaklines=true,breakatwhitespace=false,xleftmargin=20pt,xrightmargin=0pt,columns=flexible,linewidth=\\textwidth}\n\n\\begin{document}\n\n";
-  console.log(divs);
 
   try {
     for (var i = 0; i < divs.length; i++) {
@@ -178,7 +177,6 @@ function htmlToLatex(divs) {
         latex +=
           "\n\n\\subsection{}\n" +
           pTags[j].textContent+"\n\n";
-          console.log(latex);
         }
       }
       if (preTags.length > 0) {
@@ -255,7 +253,7 @@ function htmlTohtml(divs) {
 }
 
 function backupallchat(method) {
-  console.log(method.match(/\-(\w+)$/)[1]);
+  // console.log(method.match(/\-(\w+)$/)[1]);
   method = method.match(/\-(\w+)$/)[1];
   var divs = document.getElementsByClassName(clssName_);
   for (let i = divs.length + 1; i <= divs.length; i++) {
@@ -282,7 +280,7 @@ function backupallchat(method) {
 }
 
 function backupsomechat(method) {
-  console.log(method.match(/\-(\w+)$/)[1]);
+  // console.log(method.match(/\-(\w+)$/)[1]);
   method = method.match(/\-(\w+)$/)[1];
   var meta_divs = document.getElementsByClassName(clssName_);
 
@@ -346,8 +344,20 @@ function download(blob,method){
 }
 }
 
+function removeCheckboxesFromDivs() {
+  checkboxStatus = false;
+  var divs = document.getElementsByClassName(clssName_);
+  for (var i = 0; i < divs.length; i++) {
+    var checkbox = divs[i].getElementsByClassName("checkbox")[0];
+    if (checkbox) {
+      divs[i].removeChild(checkbox);
+    }
+  }
+}
 
 function addCheckboxesToDivs() {
+  if(checkboxStatus === true) {
+    checkboxStatus = false;
   var divs = document.getElementsByClassName(clssName_);
   for (var i = 0; i < divs.length; i++) {
     var checkbox = document.createElement("input");
@@ -358,14 +368,17 @@ function addCheckboxesToDivs() {
     divs[i].insertBefore(checkbox, divs[i].firstChild);
   }
 }
+}
 
 function saveToClipboard(value) {
   // check if the browser supports the Clipboard API
+
+  removeCheckboxesFromDivs();
+
   if (!navigator.clipboard) {
     alert("Clipboard API is not supported in your browser.");
     return;
   }
-console.log(value.length);
   // check if the value is too big
   if (value.length > 100000) {
     alert(
@@ -377,6 +390,7 @@ console.log(value.length);
   // write the value to the clipboard
   navigator.clipboard.writeText(value).then(
     function () {
+
       alert("The value has been saved to the clipboard successfully.");
     },
     function (error) {
@@ -397,5 +411,8 @@ browser.runtime.onMessage.addListener((message) => {
       backupsomechat(message.method);
       break;
   }
+  if (typeof message.type === "number" && !isNaN(message.type)){
+    checkboxStatus = true;
+    addCheckboxesToDivs();
+  }
 });
-

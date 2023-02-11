@@ -1,5 +1,11 @@
 //---------------------------------------------------------------- Download all chats ------------------------------------------------
 browser.menus.create({
+  id: "select-chat",
+  title: "Select chats",
+  contexts: ["all"],
+});
+
+browser.menus.create({
   id: "backup-all-chat",
   title: "Backup All Chats",
   contexts: ["all"],
@@ -34,7 +40,7 @@ browser.menus.create({
 // ---------------------------------------------------------------- select some chats ------------------------------------------------
 browser.menus.create({
   id: "backup-with-checkboxes",
-  title: "Select some chat to backup",
+  title: "Save them",
   contexts: ["all"],
 });
 
@@ -66,8 +72,10 @@ browser.menus.create({
   contexts: ["all"],
 });
 
+
+
 browser.menus.onClicked.addListener((info, tab) => {
-  console.log(info.parentMenuItemId, info.menuItemId);
+  // console.log(info.parentMenuItemId, info.menuItemId);
   browser.tabs.query({ active: true, currentWindow: true }).then((tabs) => {
     browser.tabs.sendMessage(tabs[0].id, { type: info.parentMenuItemId, method:info.menuItemId});
   });
