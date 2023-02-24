@@ -11,31 +11,6 @@
 clssName_ =
   "text-base gap-4 md:gap-6 m-auto md:max-w-2xl lg:max-w-2xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0";
 let checkboxStatus = false;
-  // var arrowDown = new Image();
-  // arrowDown.src = "icons/arrowDown.png";
-  // arrowDown.id = "arrowDown";
-  // arrowDown.className = "float-icon";
-  // arrowDown.style.position = "fixed";
-  // arrowDown.style.right = "20px";
-  // arrowDown.style.bottom = "20px";
-  // arrowDown.style.width = "50px";
-  // arrowDown.style.height = "50px";
-  // arrowDown.onmouseover = "window.scrollTo(0,document.body.scrollHeight);";
-  // document.body.appendChild(arrowDown);
-  
-  // var arrowUp = new Image();
-  // arrowUp.src = "icons/arrowUp.png";
-  // arrowUp.id = "arrowUp";
-  // arrowUp.className = "float-icon";
-  // arrowUp.style.position = "fixed";
-  // arrowUp.style.right = "20px";
-  // arrowUp.style.bottom = "70px"; // adjust the bottom property
-  // arrowUp.style.width = "50px";
-  // arrowUp.style.height = "50px";
-  // document.body.appendChild(arrowUp);
-
-
-
 
 function htmlToText(divs) {  
   var text = "";
